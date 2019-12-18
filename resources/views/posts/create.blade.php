@@ -45,7 +45,7 @@
                                 <label for="category_id" class="col-md-4 col-form-label text-md-right">{{ __('Category') }}</label>
 
                                 <div class="col-md-6">
-                                    <select id="category_id" class="form-control" name="category_id" required autocomplete="category_id">
+                                    <select multiple id="category_id[]" class="form-control" name="category_id[]" required autocomplete="category_id">
 
                                         @foreach ($categories as $category)
                                             <option value="{{ $category->id }}"

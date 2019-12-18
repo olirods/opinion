@@ -78,7 +78,12 @@ class PostController extends Controller
         $p->content = $validatedData['content'];
         $p->user_id = Auth::user()->id;
         $p->save();
-        $p->categories()->attach($validatedData['category_id']);
+
+        $categories = $validatedData['category_id'];
+
+        for($i = 0, $size = count($categories); $i < $size; ++$i) {
+             $p->categories()->attach($categories[$i]);
+        }
 
         return redirect()->route('posts.show', ['id' => $p->id])->with('message', 'Post was created.');
     }

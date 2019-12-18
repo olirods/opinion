@@ -10,11 +10,15 @@
                         </div>
                     @endif
                 <div class="card" id="root">
-                    <div class="card-header"><b>{{ $post->title }}</b></div>
+                    <div class="card-header"><b>{{ $post->title }}</b>
+                        @foreach ($post->categories as $category)
+                        &nbsp&nbsp - &nbsp&nbsp <i>{{ $category->name }}</i>
+                        @endforeach
+                    </div>
                     <div class="card-body">
                         <p>{{ $post->content }}</p>
-                        <p class="text-lg-right">{{ $post->user->username}}</p>
-                        <i>@{{number_of_agrees}}&nbsp&nbsp</i>
+                        <p class="text-lg-right"><a href="/users/{{$post->user->id}}">{{ $post->user->username}}</a></p>
+                        <i href=>@{{number_of_agrees}}&nbsp&nbsp</i>
                                 <button class="material-icons text-lg-left" @click="agreePost({{$post->id}})">thumb_up</button>
                                 <button class="material-icons text-lg-left" @click="disagreePost({{$post->id}})">thumb_down</button>
                                 <i>&nbsp&nbsp@{{number_of_disagrees}}</i>

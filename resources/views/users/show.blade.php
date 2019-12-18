@@ -40,6 +40,18 @@
                                 $user->rank->level}})</label>
                         </div>
 
+                        <div class="form-group row">
+                            <label class="col-md-4 col-form-label text-md-right"><b>{{ __('Posts: ') }}</b></label>
+                            <label class="col-md-4 col-form-label text-md-right">
+                                <ul>
+                                @foreach ($user->posts as $post)
+                                    <li><a href="{{ route('posts.show', ['id' => $post->id]) }}">{{ $post->title }}</a></li>
+                                @endforeach
+                                </ul>
+                            
+                            </label>
+                        </div>
+
 
                     </div>
                 </div>

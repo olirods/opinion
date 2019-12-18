@@ -42,6 +42,8 @@ class CommentController extends Controller
         $c->content = $request['content'];
         $c->post_id = $request['post_id'];
         $c->user_id = $request['user_id'];
+        $c->number_of_agrees = 0;
+        $c->number_of_disagrees = 0;
         $c->save();
         $c->user = User::find($c->user_id);
 
