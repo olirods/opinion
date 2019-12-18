@@ -12,9 +12,8 @@
             <div class="card">
 
                 <div class="card-body">
-
-                    <a href="/categories">CATEGORIES</a>
-                    <a href="{{ route('posts.create' )}}">New Post</a>
+                    <p><a href="/categories" class="btn btn-primary">CATEGORIES</a></p>
+                    <a href="{{ route('posts.create' )}}" class="btn btn-primary">New Post</a>
                 </div>
             </div>
         </div>

@@ -11,10 +11,27 @@ use Auth;
 class CommentController extends Controller
 {
 
+    public function apiAgree(Request $request)
+    {
+        $comment = Comment::findOrFail($request['id']);
+        $comment->number_of_agrees++;
+        $comment->save();
+
+        return $comment;
+    }
+
+    public function apiDisagree(Request $request)
+    {
+        $comment = Comment::findOrFail($request['id']);
+        $comment->number_of_disagrees++;
+        $comment->save();
+
+        return $comment;
+    }
+
     public function apiIndex($post_id)
     {
         $comments = Comment::with('user')->where('post_id',$post_id)->get();
-
 
         return $comments;
     }

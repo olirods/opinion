@@ -23,5 +23,11 @@ Route::get('comments/{post_id}', 'CommentController@apiIndex')
 Route::post('comments', 'CommentController@apiStore')
     ->name('api.comments.store');
 
+Route::post('comments/agree', 'CommentController@apiAgree')
+    ->name('api.comments.agree');
+
+Route::post('comments/disagree', 'CommentController@apiDisagree')
+    ->name('api.comments.disagree');
+
 Route::delete('comments', 'CommentController@apiDestroy')
     ->name('api.comments.destroy');
