@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Post;
 use App\Category;
 use Auth;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 
 class PostController extends Controller
 {
@@ -73,9 +75,14 @@ class PostController extends Controller
             'category_id' => 'required',
         ]);
 
+        $img = $request->file('srcImage');
+        $extension = $img->getClientOriginalExtension();
+        Storage::disk('public')->put($img->getFilename().'.'.$extension, File::get($img));
+
         $p = new Post;
         $p->title = $validatedData['title'];
         $p->content = $validatedData['content'];
+        $p->srcImage = $img->getFilename().'.'.$extension;
         $p->user_id = Auth::user()->id;
         $p->save();
 

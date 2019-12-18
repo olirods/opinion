@@ -9,8 +9,8 @@
                     <div class="card-header">{{ __('New Post') }}</div>
     
                     <div class="card-body">
-                        <form method="POST" action="{{ route('posts.store') }}">
-                            @csrf
+                        <form method="POST" action="{{ route('posts.store') }}" enctype="multipart/form-data">
+                            {{ csrf_field() }}
     
                             <div class="form-group row">
                                 <label for="title" class="col-md-4 col-form-label text-md-right">{{ __('Title') }}</label>
@@ -38,6 +38,14 @@
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
+                                </div>
+                            </div>
+                            
+                            <div class="form-group row">
+                                <label for="srcImage" class="col-md-4 col-form-label text-md-right">{{ __('Upload an image') }}</label>
+    
+                                <div class="col-md-6">
+                                    <input type="file" class="form-control" name="srcImage">
                                 </div>
                             </div>
 

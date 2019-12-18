@@ -11,9 +11,15 @@
                     @endif
                 <div class="card" id="root">
                     <div class="card-header"><b>{{ $post->title }}</b>
-                        @foreach ($post->categories as $category)
-                        &nbsp&nbsp - &nbsp&nbsp <i>{{ $category->name }}</i>
-                        @endforeach
+                        <div class="card-header-tabs">
+                            @foreach ($post->categories as $category)
+                            -&nbsp&nbsp<i>{{ $category->name }}</i>&nbsp&nbsp
+                            @endforeach
+                            -
+                        </div>
+                    </div>
+                    <div>
+                        <img class="card-img" src="{{url('storage/'.$post->srcImage)}}">
                     </div>
                     <div class="card-body">
                         <p>{{ $post->content }}</p>
