@@ -30,6 +30,9 @@ Route::post('posts', 'PostController@store')
 Route::get('posts/{id}', 'PostController@show')
     ->name('posts.show');
 
+Route::get('users/{id}', 'UserController@show')
+    ->name('users.show');
+
 Route::delete('posts/{id}', 'PostController@destroy')
     ->name('posts.destroy');
 

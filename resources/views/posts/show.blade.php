@@ -32,7 +32,7 @@
                     <div>
                             <div class="card-footer" v-for="comment in comments">
                                 @{{ comment.content }}
-                                <p class="text-lg-right">@{{ comment.user.username }}</p>
+                                <a :href="'/users/' + comment.user.id" class="text-lg-right">@{{ comment.user.username }}</a><br>
                                 <i>@{{comment.number_of_agrees}}&nbsp&nbsp</i>
                                 <button class="material-icons text-lg-left" @click="agreeComment(comment)">thumb_up</button>
                                 <button class="material-icons text-lg-left" @click="disagreeComment(comment)">thumb_down</button>
