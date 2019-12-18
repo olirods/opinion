@@ -29,5 +29,11 @@ Route::post('comments/agree', 'CommentController@apiAgree')
 Route::post('comments/disagree', 'CommentController@apiDisagree')
     ->name('api.comments.disagree');
 
+Route::post('posts/agree', 'PostController@apiAgree')
+    ->name('api.posts.agree');
+
+Route::post('posts/disagree', 'PostController@apiDisagree')
+    ->name('api.posts.disagree');
+
 Route::delete('comments', 'CommentController@apiDestroy')
     ->name('api.comments.destroy');

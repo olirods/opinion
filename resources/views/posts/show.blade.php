@@ -9,12 +9,16 @@
                             {{ session('message') }}
                         </div>
                     @endif
-                <div class="card">
+                <div class="card" id="root">
                     <div class="card-header"><b>{{ $post->title }}</b></div>
                     <div class="card-body">
                         <p>{{ $post->content }}</p>
                         <p class="text-lg-right">{{ $post->user->username}}</p>
-
+                        <i>@{{number_of_agrees}}&nbsp&nbsp</i>
+                                <button class="material-icons text-lg-left" @click="agreePost({{$post->id}})">thumb_up</button>
+                                <button class="material-icons text-lg-left" @click="disagreePost({{$post->id}})">thumb_down</button>
+                                <i>&nbsp&nbsp@{{number_of_disagrees}}</i>
+                                <br>
                         @if ( Auth::user()->id == $post->user_id )
                         <form method="POST"
                                 action="{{ route('posts.destroy', ['id' => $post->id]) }}">
@@ -25,13 +29,13 @@
                         @endif
 
                     </div>
-                    <div id="root">
+                    <div>
                             <div class="card-footer" v-for="comment in comments">
                                 @{{ comment.content }}
                                 <p class="text-lg-right">@{{ comment.user.username }}</p>
                                 <i>@{{comment.number_of_agrees}}&nbsp&nbsp</i>
-                                <button class="material-icons text-lg-left" @click="agree(comment)">thumb_up</button>
-                                <button class="material-icons text-lg-left" @click="disagree(comment)">thumb_down</button>
+                                <button class="material-icons text-lg-left" @click="agreeComment(comment)">thumb_up</button>
+                                <button class="material-icons text-lg-left" @click="disagreeComment(comment)">thumb_down</button>
                                 <i>&nbsp&nbsp@{{comment.number_of_disagrees}}</i>
                                 <br>
                                 <button v-if="{{Auth::user()->id}} == comment.user.id" @click="deleteComment(comment.id)" class="btn btn-secondary">
@@ -62,6 +66,8 @@
             data: {
                 comments: [],
                 newCommentContent: '',
+                number_of_agrees: {{ $post->number_of_agrees}},
+                number_of_disagrees: {{ $post->number_of_disagrees}}
             },
         mounted() {
             axios.get("/api/comments/{{ $post->id }}")
@@ -112,7 +118,7 @@
                 })
             },
 
-            agree: function (comment) {
+            agreeComment: function (comment) {
                 axios.post("{{ route ('api.comments.agree') }}", {
                     id: comment.id,
                 })
@@ -125,13 +131,39 @@
                 })
             },
 
-            disagree: function (comment) {
+            disagreeComment: function (comment) {
                 axios.post("{{ route ('api.comments.disagree') }}", {
                     id: comment.id,
                 })
                 .then(response => {
                     // handle success
                     comment.number_of_disagrees++;
+                })
+                .catch(response => {
+                    console.log(response);
+                })
+            },
+
+            agreePost: function (post_id) {
+                axios.post("{{ route ('api.posts.agree') }}", {
+                    id: post_id,
+                })
+                .then(response => {
+                    // handle success
+                    this.number_of_agrees++;
+                })
+                .catch(response => {
+                    console.log(response);
+                })
+            },
+
+            disagreePost: function (post_id) {
+                axios.post("{{ route ('api.posts.disagree') }}", {
+                    id: post_id,
+                })
+                .then(response => {
+                    // handle success
+                    this.number_of_disagrees++;
                 })
                 .catch(response => {
                     console.log(response);

@@ -10,6 +10,24 @@ use Auth;
 class PostController extends Controller
 {
 
+    public function apiAgree(Request $request)
+    {
+        $post = Post::findOrFail($request['id']);
+        $post->number_of_agrees++;
+        $post->save();
+
+        return $post;
+    }
+
+    public function apiDisagree(Request $request)
+    {
+        $post = Post::findOrFail($request['id']);
+        $post->number_of_disagrees++;
+        $post->save();
+
+        return $post;
+    }
+
     /**
      * Create a new controller instance.
      *
@@ -17,7 +35,7 @@ class PostController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        //
     }
 
     /**
