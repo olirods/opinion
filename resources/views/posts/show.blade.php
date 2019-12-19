@@ -40,6 +40,9 @@
 
                     </div>
                     <div>
+                        <div class="card-footer">
+                            <i>- COMMENTS -</i>
+                        </div>
                             <div class="card-footer" v-for="comment in comments">
                                 @{{ comment.content }}
                                 <a :href="'/users/' + comment.user.id" class="text-lg-right">@{{ comment.user.username }}</a><br>
@@ -54,8 +57,9 @@
                         </form>
                             </div>
                             <div class="card-footer">
-                                    <div class="col-md-6">
-                                        <input id="input" type="text" class="form-control" v-model="newCommentContent">
+                                    <div>
+                                        <br>
+                                        <input id="input" type="text" class="form-control" v-model="newCommentContent"><br>
                                         <button @click="createComment" class="btn btn-primary">
                                         {{ __('Add a comment') }}
                                         </button>
