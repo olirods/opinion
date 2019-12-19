@@ -13,7 +13,7 @@ class CommentTableSeeder extends Seeder
     public function run()
     {
         $c = new Comment;
-        $c->content = "Those parties are not far right. They fight for the people rights.";
+        $c->content = "Those parties are not far right. They fight for people rights.";
         $c->number_of_agrees = 5;
         $c->number_of_disagrees = 2;
         $c->user_id = 5;
@@ -29,7 +29,7 @@ class CommentTableSeeder extends Seeder
         $c->save();
 
         $c = new Comment;
-        $c->content = "And what happens with Airpods? Didn't they relaunch the wearables market?";
+        $c->content = "And what happens with the Airpods? Didn't they relaunch the wearables market?";
         $c->number_of_agrees = 1;
         $c->number_of_disagrees = 9;
         $c->user_id = 1;

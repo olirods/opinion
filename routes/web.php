@@ -15,7 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('categories', 'CategoryController@index')
+Route::get('home', 'CategoryController@index')
     ->name('categories.index');
 
 Route::get('categories/{category}', 'CategoryController@show')
@@ -37,5 +37,3 @@ Route::delete('posts/{id}', 'PostController@destroy')
     ->name('posts.destroy');
 
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');

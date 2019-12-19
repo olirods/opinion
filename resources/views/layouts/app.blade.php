@@ -62,6 +62,9 @@
                                     <a class="dropdown-item" href="/users/{{ Auth::user()->id}}">
                                         {{ __('My Profile') }}
                                     </a>
+                                        <a class="dropdown-item" href="/posts/create">
+                                            {{ __('New Post') }}
+                                        </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

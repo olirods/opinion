@@ -7,7 +7,7 @@
                 <div class="card">
     
                     <div class="card-body">
-                        <p>These are the existing categories:</p>
+                        <p><b>Welcome to Opinion!</b> These are the existing categories where you can give your opinion:</p>
                         <ul>
                             @foreach ($categories as $category)
                                 <li><a href="{{ route('categories.show', ['category' => $category]) }}">{{ $category->name }}</a></li>

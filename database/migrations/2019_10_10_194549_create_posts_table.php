@@ -18,7 +18,7 @@ class CreatePostsTable extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
-            $table->string('srcImage')->default("cropped-MUELLE-DEL-TINTO-HUELVA-01-800x324.jpg");
+            $table->string('srcImage')->default("huelva.jpg");
             $table->longText('content');
             $table->integer('number_of_agrees')->default(0);
             $table->integer('number_of_disagrees')->default(0);
